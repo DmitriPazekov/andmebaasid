@@ -1,0 +1,18 @@
+--Need sõnad on vaja pähe õppida!
+Andmed - данные
+Haldus - администрирование
+Andmebaaside haldussüsteemid - системы управления БД - СУБД -SQL Server 
+----------------
+Tabel
+Rida=kirje- строка=запись
+veerg=väli -
+päring - запрос
+-----------------------
+käivita -запустить
+värskenda - uuenda - обновить 
+laadi alla - скачать
+laadi üles - загрузить
+loo 
+--------------------
+PRIMARY KEY - primaarne võti - первичный ключ
+foreign key - välja võti - вне
