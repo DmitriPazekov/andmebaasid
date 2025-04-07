@@ -8,6 +8,6 @@ Näited: vanus, palk, temperatuur, kaal, pikkus, jne
 
 ## Piirangud - ограничения
 1. Primary key - ei anna võimalust lisada topelt väätused
-2 UNIQUE - unikaalsus
+2. UNIQUE - unikaalsus
 3. NOT NULL ei lubada tühjad väärtused
 4. foreign key - saab kasutada ainult teise tabeli väärtused
