@@ -3,7 +3,7 @@
 
 CREATE DATABASE pazekovTIT;
  --Object Explorer on vaja pidevalt uuendada käsitsi!
-USE pazekovTIT;
+v
 --tabeli loomine 
 CREATE TABLE opilane(
 opilaneID int Primary Key identity(1,1),
@@ -28,6 +28,7 @@ CREATE TABLE ryhm(
 ryhmID int not null primary key identity(1,1),
 ryhm varchar(10) unique,
 osakond varchar(20)
+opetajaID int not null foreign key identity(2,2),
 )
 INSERT INTO ryhm(ryhm, osakond)
 Values('TITpv24', 'IT'),('KRRpv23','Rätsep');
