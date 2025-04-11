@@ -1,3 +1,6 @@
+-- sql komentaar
+--xampp control panel (start apache, start
+
 CREATE DATABASE pazekovTIT;
  --Object Explorer on vaja pidevalt uuendada käsitsi!
 USE pazekovTIT;
