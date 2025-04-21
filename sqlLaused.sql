@@ -103,3 +103,12 @@ FROM film
 WHERE filmNimetus LIKE CONCAT(taht, '%');
 
 END
+
+
+BEGIN
+
+set @sqltegevus=concat('ALTER TABLE ', tabelinimi, ' ADD COLUMN ', veerunimi, ' ', tyyp);
+PREPARE STMT FROM @sqltegevus;
+EXECUTE STMT;
+
+END
