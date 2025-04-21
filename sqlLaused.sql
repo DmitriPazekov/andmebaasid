@@ -104,6 +104,18 @@ WHERE filmNimetus LIKE CONCAT(taht, '%');
 
 END
 
+--add
+BEGIN
+
+set @sqltegevus=concat('ALTER TABLE ', tabelinimi, ' ADD COLUMN ', veerunimi, ' ', tyyp);
+PREPARE STMT FROM @sqltegevus;
+EXECUTE STMT;
+
+END
+
+
+
+--delete
 
 BEGIN
 
