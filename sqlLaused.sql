@@ -93,3 +93,13 @@ select * from hinne;
 
 
 
+
+
+--protseduurid taht
+
+BEGIN
+SELECT filmNimetus, pikkus
+FROM film
+WHERE filmNimetus LIKE CONCAT(taht, '%');
+
+END
