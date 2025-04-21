@@ -124,3 +124,13 @@ PREPARE STMT FROM @sqltegevus;
 EXECUTE STMT;
 
 END
+
+
+
+--
+
+BEGIN
+	SELECT filmnimetus, pikkus
+    FROM film
+    WHERE pikkus < pikkus_val;
+END
