@@ -134,3 +134,84 @@ BEGIN
     FROM film
     WHERE pikkus < pikkus_val;
 END
+
+
+
+
+
+create database TITtriger;
+use TITtriger;
+
+--tabel, mida automaatselt täidab triger
+create table logi(
+id int primary key identity(1,1),
+tegevus varchar(25),
+kasutaja varchar(25),
+aeg datetime,
+andmed text)
+
+--tabel, millega töötab kasutaja
+
+create table puud(
+puuId int primary key identity(1,1),
+puuNimi varchar(25),
+pikkus int,
+aasta int)
+INSERT INTO puud(puuId, puuNimi, pikkus, aasta)
+Values('tamm', 5, 100)
+
+--triger, mis jälgib tabeli puud täitmine(lisamine
+create trigger puuLisamine
+on puud
+for insert
+as
+insert into logi(kasutaja, tegevus, aeg, andmed)
+select 
+SYSTEM_USER,
+'puu on lisatud',
+GETDATE(),
+concat(inserted.puuNimi, ', ' ,inserted.pikkus , ', ' ,inserted.aasta)
+from inserted;
+--kontroll
+insert into puud(puuNimi, pikkus, aasta)
+values ('vaher', 22, 2000);
+select *from puud;
+select * from logi;
+drop trigger puuLisamine;
+--triger, mis jälgib tabelis kustutamine
+create trigger puuKustutamine
+on puud
+for insert
+as
+insert into logi(kasutaja, tegevus, aeg, andmed)
+select 
+SYSTEM_USER,
+'puu on kustutatud',
+GETDATE(),
+concat(deleted.puuNimi, ', ' ,deleted.pikkus , ', ' ,deleted.aasta)
+from deleted;
+delete from puud where puuId=1
+select *from puud;
+select * from logi;
+--triger, mis jälgib tabelis uuendamine
+create trigger puuUuendamine
+on puud
+for insert
+as
+insert into logi(kasutaja, tegevus, aeg, andmed)
+select 
+SYSTEM_USER,
+'puu on uuendatud',
+GETDATE(),
+concat(
+'vana puu info - ', deleted.puuNimi, ', ' ,deleted.pikkus , ', ' ,deleted.aasta,
+'uus puu info - ', deleted.puuNimi, ', ' ,deleted.pikkus , ', ' ,deleted.aasta
+)
+from deleted inner join inserted
+on deleted.puuId=inserted.puuId;
+
+--kontroll
+update puud set pikkus=25555, aasta=1900
+where puuId=2;
+select *from puud;
+select * from logi;
